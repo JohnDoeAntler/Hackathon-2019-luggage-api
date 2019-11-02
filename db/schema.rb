@@ -14,7 +14,7 @@ ActiveRecord::Schema.define(version: 2019_11_02_095112) do
 
   create_table "airplane_classes", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4", force: :cascade do |t|
     t.bigint "airplane_id", null: false
-    t.integer "class", null: false
+    t.integer "cot", null: false
     t.integer "space_amount", null: false
     t.decimal "space_length", precision: 10, null: false
     t.decimal "space_width", precision: 10, null: false
