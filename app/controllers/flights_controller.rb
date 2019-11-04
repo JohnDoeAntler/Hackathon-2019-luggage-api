@@ -5,12 +5,12 @@ class FlightsController < ApplicationController
   def index
     @flights = Flight.where(flight_params).all
 
-    render json: @flights
+    render json: @flights, include: :users
   end
 
   # GET /flights/1
   def show
-    render json: @flight
+    render json: @flight, include: :users
   end
 
   # POST /flights

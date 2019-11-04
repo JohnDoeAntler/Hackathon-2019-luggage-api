@@ -10,6 +10,9 @@ gem 'sqlite3', '~> 1.4'
 # Use Puma as the app server
 gem 'puma', '~> 3.11'
 gem 'mysql2'
+gem 'jwt'
+gem 'rack-cors'
+gem 'bcrypt'
 # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
 # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
 # gem 'jbuilder', '~> 2.7'

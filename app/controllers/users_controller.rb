@@ -5,12 +5,12 @@ class UsersController < ApplicationController
   def index
     @users = User.where(user_params).all
 
-    render json: @users
+    render json: @users, include: [:luggages, :purchase_logs]
   end
 
   # GET /users/1
   def show
-    render json: @user
+    render json: @user, include: [:luggages, :purchase_logs]
   end
 
   # POST /users
@@ -46,6 +46,6 @@ class UsersController < ApplicationController
 
     # Only allow a trusted parameter "white list" through.
     def user_params
-      params.permit(:ticket_id, :airplane_class_id, :flight_id)
+      params.permit(:ticket_id, :seat_index, :airplane_class_id, :flight_id)
     end
 end

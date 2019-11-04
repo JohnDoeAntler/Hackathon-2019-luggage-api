@@ -12,7 +12,7 @@ class StoresControllerTest < ActionDispatch::IntegrationTest
 
   test "should create store" do
     assert_difference('Store.count') do
-      post stores_url, params: { store: {  } }, as: :json
+      post stores_url, params: { store: { password_digest: @store.password_digest, username: @store.username } }, as: :json
     end
 
     assert_response 201
@@ -24,7 +24,7 @@ class StoresControllerTest < ActionDispatch::IntegrationTest
   end
 
   test "should update store" do
-    patch store_url(@store), params: { store: {  } }, as: :json
+    patch store_url(@store), params: { store: { password_digest: @store.password_digest, username: @store.username } }, as: :json
     assert_response 200
   end
 

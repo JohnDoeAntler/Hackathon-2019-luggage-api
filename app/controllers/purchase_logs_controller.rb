@@ -15,6 +15,14 @@ class PurchaseLogsController < ApplicationController
 
   # POST /purchase_logs
   def create
+    if (purchase_log_params[:store_id])
+      authorize_request
+
+      if (@current_store.id != purchase_log_params[:store_id])
+        render json: { errors: :unauthorized }, status: :unauthorized
+      end
+    end
+
     @purchase_log = PurchaseLog.new(purchase_log_params)
 
     if @purchase_log.save
@@ -47,5 +55,16 @@ class PurchaseLogsController < ApplicationController
     # Only allow a trusted parameter "white list" through.
     def purchase_log_params
       params.permit(:user_id, :store_id, :space_increasement)
+    end
+
+    def authorize_request
+      begin
+        @decoded = JsonWebToken.decode(params[:token])
+        @current_store = Store.find(@decoded[:store_id])
+      rescue ActiveRecord::RecordNotFound => e
+        render json: { errors: e.message }, status: :unauthorized
+      rescue JWT::DecodeError => e
+        render json: { errors: e.message }, status: :unauthorized
+      end
     end
 end

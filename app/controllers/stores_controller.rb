@@ -3,14 +3,14 @@ class StoresController < ApplicationController
 
   # GET /stores
   def index
-    @stores = Store.all
+    @stores = Store.where(store_params).all
 
-    render json: @stores
+    render json: @stores, include: :purchase_logs, except: [:username, :password_digest]
   end
 
   # GET /stores/1
   def show
-    render json: @store
+    render json: @store, include: :purchase_logs, except: [:username, :password_digest]
   end
 
   # POST /stores
@@ -46,6 +46,6 @@ class StoresController < ApplicationController
 
     # Only allow a trusted parameter "white list" through.
     def store_params
-      params.fetch(:store, {})
+      params.permit(:username, :password)
     end
 end

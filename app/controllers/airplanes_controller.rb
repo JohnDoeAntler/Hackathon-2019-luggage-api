@@ -5,12 +5,12 @@ class AirplanesController < ApplicationController
   def index
     @airplanes = Airplane.all
 
-    render json: @airplanes
+    render json: @airplanes, include: [:airplane_classes, :flights]
   end
 
   # GET /airplanes/1
   def show
-    render json: @airplane
+    render json: @airplane, include: [:airplane_classes, :flights]
   end
 
   # POST /airplanes
