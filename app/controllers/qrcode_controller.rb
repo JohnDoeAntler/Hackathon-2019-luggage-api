@@ -1,5 +1,5 @@
 class QrcodeController < ApplicationController
-	before_action :set_user, only: [:generate, :auth]
+	before_action :set_user, only: [:generate]
   	SECRET_KEY = Rails.application.secrets.secret_key_base. to_s
 
 	def generate
@@ -9,11 +9,12 @@ class QrcodeController < ApplicationController
 	def auth
 		begin
 			@decoded = JsonWebToken.decode(params[:token])
-			render json: { validation: true }
+      		@current_user = User.find(@decoded[:id])
+			render json: { validation: true, user: @current_user }
 		rescue ActiveRecord::RecordNotFound => e
-			render json: { errors: e.message }, status: :unauthorized
+			render json: { validation: false, errors: e.message }, status: :unauthorized
 		rescue JWT::DecodeError => e
-			render json: { validation: false }, status: :unauthorized
+			render json: { validation: false, errors: e.message }, status: :unauthorized
 		end
 	end
 

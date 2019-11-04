@@ -8,7 +8,7 @@ Rails.application.routes.draw do
   resources :airplanes
 
   get '/qrcode/generate/:id', to: 'qrcode#generate'
-  get '/qrcode/auth/:id', to: 'qrcode#auth'
+  get '/qrcode/auth', to: 'qrcode#auth'
   get '/auth', to: 'auth#login'
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 end
