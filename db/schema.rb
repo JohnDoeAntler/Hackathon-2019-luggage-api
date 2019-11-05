@@ -17,11 +17,11 @@ ActiveRecord::Schema.define(version: 2019_11_04_072320) do
     t.integer "cot", null: false
     t.integer "seat_amount", null: false
     t.integer "bin_amount", null: false
-    t.decimal "bin_length", precision: 6, scale: 3, null: false
-    t.decimal "bin_width", precision: 6, scale: 3, null: false
-    t.decimal "bin_height", precision: 6, scale: 3, null: false
-    t.decimal "assignable_space_percentage", precision: 6, scale: 3, null: false
-    t.decimal "purchasable_space_percentage", precision: 6, scale: 3, null: false
+    t.decimal "bin_length", precision: 12, scale: 3, null: false
+    t.decimal "bin_width", precision: 12, scale: 3, null: false
+    t.decimal "bin_height", precision: 12, scale: 3, null: false
+    t.decimal "assignable_space_percentage", precision: 12, scale: 3, null: false
+    t.decimal "purchasable_space_percentage", precision: 12, scale: 3, null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["airplane_id"], name: "index_airplane_classes_on_airplane_id"
@@ -41,9 +41,9 @@ ActiveRecord::Schema.define(version: 2019_11_04_072320) do
 
   create_table "luggages", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4", force: :cascade do |t|
     t.bigint "user_id", null: false
-    t.decimal "length", precision: 6, scale: 3, null: false
-    t.decimal "width", precision: 6, scale: 3, null: false
-    t.decimal "height", precision: 6, scale: 3, null: false
+    t.decimal "length", precision: 12, scale: 3, null: false
+    t.decimal "width", precision: 12, scale: 3, null: false
+    t.decimal "height", precision: 12, scale: 3, null: false
     t.text "image_url", null: false
     t.integer "space_index", null: false
     t.datetime "created_at", precision: 6, null: false
@@ -54,7 +54,7 @@ ActiveRecord::Schema.define(version: 2019_11_04_072320) do
   create_table "purchase_logs", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4", force: :cascade do |t|
     t.bigint "user_id", null: false
     t.bigint "store_id"
-    t.decimal "space_increasement", precision: 6, scale: 3
+    t.decimal "space_increasement", precision: 12, scale: 3
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["store_id"], name: "index_purchase_logs_on_store_id"
