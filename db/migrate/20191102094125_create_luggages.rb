@@ -6,7 +6,7 @@ class CreateLuggages < ActiveRecord::Migration[6.0]
       t.decimal :width, null: false, precision: 12, scale: 3
       t.decimal :height, null: false, precision: 12, scale: 3
       t.text :image_url, null: false
-      t.integer :space_index, null: false
+      t.integer :bin_index, null: false
 
       t.timestamps
     end

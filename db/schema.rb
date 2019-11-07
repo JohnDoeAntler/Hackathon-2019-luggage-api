@@ -10,13 +10,17 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_11_04_072320) do
+ActiveRecord::Schema.define(version: 2019_11_07_162031) do
 
   create_table "airplane_classes", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4", force: :cascade do |t|
     t.bigint "airplane_id", null: false
     t.integer "cot", null: false
     t.integer "seat_amount", null: false
+    t.integer "seat_col", null: false
+    t.integer "seat_row", null: false
     t.integer "bin_amount", null: false
+    t.integer "bin_col", null: false
+    t.integer "bin_row", null: false
     t.decimal "bin_length", precision: 12, scale: 3, null: false
     t.decimal "bin_width", precision: 12, scale: 3, null: false
     t.decimal "bin_height", precision: 12, scale: 3, null: false
@@ -45,7 +49,7 @@ ActiveRecord::Schema.define(version: 2019_11_04_072320) do
     t.decimal "width", precision: 12, scale: 3, null: false
     t.decimal "height", precision: 12, scale: 3, null: false
     t.text "image_url", null: false
-    t.integer "space_index", null: false
+    t.integer "bin_index", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["user_id"], name: "index_luggages_on_user_id"
@@ -59,6 +63,15 @@ ActiveRecord::Schema.define(version: 2019_11_04_072320) do
     t.datetime "updated_at", precision: 6, null: false
     t.index ["store_id"], name: "index_purchase_logs_on_store_id"
     t.index ["user_id"], name: "index_purchase_logs_on_user_id"
+  end
+
+  create_table "staffs", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4", force: :cascade do |t|
+    t.string "username"
+    t.string "password_digest"
+    t.integer "role"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["username"], name: "index_staffs_on_username", unique: true
   end
 
   create_table "stores", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4", force: :cascade do |t|

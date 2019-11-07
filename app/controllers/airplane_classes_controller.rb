@@ -46,6 +46,6 @@ class AirplaneClassesController < ApplicationController
 
     # Only allow a trusted parameter "white list" through.
     def airplane_class_params
-      params.permit(:airplane_id, :cot, :seat_amount, :bin_amount, :bin_length, :bin_width, :bin_height, :assignable_space_percentage, :purchasable_space_percentage)
+      params.permit(:airplane_id, :cot, :seat_amount, :seat_col, :seat_row, :bin_amount, :bin_col, :bin_row, :bin_length, :bin_width, :bin_height, :assignable_space_percentage, :purchasable_space_percentage)
     end
 end
